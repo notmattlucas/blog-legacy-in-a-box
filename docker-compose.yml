@@ -4,6 +4,11 @@ services:
     image: springcommunity/spring-petclinic-rest
     entrypoint:
       - java
+      - "-jar"
+      - "/mount/wait4j-1.0.0.jar"
+      - "mysql:3306"
+      - "--"
+      - java
       - "-Dspring.datasource.url=jdbc:mysql://mysql:3306/petclinic"
       - "-Dspring.datasource.username=pc"
       - "-Dspring.jpa.hibernate.ddl-auto=update"
@@ -12,13 +17,17 @@ services:
       - "/app/resources:/app/classes:/app/libs/*"
       - "org.springframework.samples.petclinic.PetClinicApplication"
     ports:
-      - "9966:9966"
+      - "9966"
     environment:
       - "SPRING_PROFILES_ACTIVE=mysql,spring-data-jpa"
+    depends_on:
+      - mysql
+    volumes:
+      - "./mount/wait4j-1.0.0.jar:/mount/wait4j-1.0.0.jar"
   mysql:
     image: "mysql:5.7"
     ports:
-      - "3306:3306"
+      - "3306"
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
