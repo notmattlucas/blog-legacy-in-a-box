@@ -5,7 +5,9 @@ services:
     entrypoint:
       - java
       - "-Dspring.datasource.url=jdbc:mysql://mysql:3306/petclinic"
-      - "-Dspring.datasource.username=petclinic"
+      - "-Dspring.datasource.username=pc"
+      - "-Dspring.jpa.hibernate.ddl-auto=update"
+      - "-Dspring.jpa.database-platform=org.hibernate.dialect.MySQL57Dialect"
       - "-cp"
       - "/app/resources:/app/classes:/app/libs/*"
       - "org.springframework.samples.petclinic.PetClinicApplication"
