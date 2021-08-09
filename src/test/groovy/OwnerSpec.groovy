@@ -1,18 +1,16 @@
-package com.lucas.petclinic
 
-import org.junit.ClassRule
+
 import org.testcontainers.containers.DockerComposeContainer
-import org.testcontainers.containers.wait.strategy.Wait
-import org.testcontainers.containers.wait.strategy.WaitStrategy
 import org.testcontainers.spock.Testcontainers
+import spock.lang.Shared
 import spock.lang.Specification
 
 @Testcontainers
-class OwnerSpecification extends Specification {
+class OwnerSpec extends Specification {
 
-    @ClassRule
+    @Shared
     public DockerComposeContainer environment = new DockerComposeContainer(new File("./docker-compose.yml"))
-        .withExposedService("petclinic", 9966);
+            .withExposedService("petclinic", 9966)
 
     def "creates an owner"() {
 
