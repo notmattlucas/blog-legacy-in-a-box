@@ -4,7 +4,7 @@ services:
   petclinic:
     build:
       context: .
-    entrypoint: bash -c "/wait-for-it.sh -h mysql -p 3306 -- java -Dspring.datasource.url=jdbc:mysql://mysql:3306/petclinic?enabledTLSProtocols=TLSv1.2 -Dspring.datasource.username=pc -Dspring.jpa.hibernate.ddl-auto=update -Dspring.jpa.database-platform=org.hibernate.dialect.MySQL57Dialect -cp /app/resources:/app/classes:/app/libs/* org.springframework.samples.petclinic.PetClinicApplication"
+    entrypoint: bash -c "/wait-for-it.sh -h mysql -p 3306 -- java -Dspring.datasource.url=jdbc:mysql://mysql:3306/petclinic?enabledTLSProtocols=TLSv1.2 -Dspring.datasource.username=pc -Dspring.jpa.hibernate.ddl-auto=update -Dspring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect -cp /app/resources:/app/classes:/app/libs/* org.springframework.samples.petclinic.PetClinicApplication"
     ports:
       - "9966"
     environment:
@@ -13,7 +13,7 @@ services:
       - mysql
       
   mysql:
-    image: "mysql:5.7"
+    image: "mysql:8"
     ports:
       - "3306"
     environment:
