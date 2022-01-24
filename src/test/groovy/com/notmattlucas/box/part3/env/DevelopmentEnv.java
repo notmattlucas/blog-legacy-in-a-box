@@ -16,11 +16,21 @@ import java.util.stream.Collectors;
 
 public class DevelopmentEnv implements Environment {
 
-    private static final String DOCKER_SOCK = "unix:///var/run/docker.sock";
+    private static final String DOCKER_SOCK;
 
     private static final String PREFIX = "/blog-legacy-in-a-box_";
 
     private Map<String, Container> containers;
+
+    static {
+        String docker = System.getenv("DOCKER_HOST");
+        if (docker == null) {
+            DOCKER_SOCK = "unix:///var/run/docker.sock";
+        } else {
+            DOCKER_SOCK = docker;
+        }
+
+    }
 
     public void connect() {
         DefaultDockerClientConfig config = DefaultDockerClientConfig.createDefaultConfigBuilder()

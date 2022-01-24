@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -12,13 +11,19 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>14</maven.compiler.source>
+    <maven.compiler.target>14</maven.compiler.target>
     <slf4j.version>1.7.33</slf4j.version>
     <testcontainers.version>1.16.3</testcontainers.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>3.0.9</version>
+      <type>pom</type>
+    </dependency>
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
@@ -37,7 +42,12 @@
       <version>${testcontainers.version}</version>
       <scope>test</scope>
     </dependency>
-    
+    <dependency>
+      <groupId>org.codehaus.groovy.modules.http-builder</groupId>
+      <artifactId>http-builder</artifactId>
+      <version>0.7.2</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
