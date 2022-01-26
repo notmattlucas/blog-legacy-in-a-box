@@ -19,11 +19,13 @@ public class MySql extends Svc {
 
     private static final String PASSWORD = "petclinic";
 
+    private static final String DB = "petclinic";
+
     private final String connectionUrl;
 
     public MySql(String host, int port) {
         super(host, port);
-        connectionUrl = String.format("jdbc:mysql://%s:%s/petclinic?serverTimezone=UTC", getHost(), getPort());
+        connectionUrl = String.format("jdbc:mysql://%s:%s/%s?serverTimezone=UTC", getHost(), getPort(), DB);
     }
 
     public void clear() {
@@ -32,7 +34,7 @@ public class MySql extends Svc {
             try {
                 ctx.execute("SET FOREIGN_KEY_CHECKS=0");
                 ctx.meta()
-                    .filterSchemas(s -> s.getName().equals("petclinic"))
+                    .filterSchemas(s -> s.getName().equals(DB))
                     .getTables()
                     .forEach(table -> ctx.truncate(table.getName()).execute());
             } finally {
