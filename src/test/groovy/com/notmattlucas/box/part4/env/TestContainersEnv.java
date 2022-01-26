@@ -17,10 +17,10 @@ class TestContainersEnv implements Environment {
     }
 
     @Override
-    public MySqlSvc mysql() {
+    public MySql mysql() {
         String host = environment.getServiceHost(MYSQL_ID, MYSQL_PORT);
         int port = environment.getServicePort(MYSQL_ID, MYSQL_PORT);
-        return new MySqlSvc(host, port);
+        return new MySql(host, port);
     }
 
     @Override

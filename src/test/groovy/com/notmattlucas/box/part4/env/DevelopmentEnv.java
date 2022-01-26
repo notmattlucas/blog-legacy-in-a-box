@@ -55,12 +55,12 @@ public class DevelopmentEnv implements Environment {
     }
 
     @Override
-    public MySqlSvc mysql() {
+    public MySql mysql() {
         Optional<Integer> port = publicPortOf(MYSQL_ID, MYSQL_PORT);
         if (port.isEmpty()) {
             throw new IllegalStateException("Could not find mysql container - is it running?");
         }
-        return new MySqlSvc("localhost", port.get());
+        return new MySql("localhost", port.get());
     }
 
     @Override

@@ -33,7 +33,7 @@ public interface Environment {
         return developmentEnv;
     }
 
-    MySqlSvc mysql();
+    MySql mysql();
 
     PetClinic petclinic();
 
